@@ -2,6 +2,12 @@ import Constants from '../constants';
 import AngularBaseClass from '../angularBaseClass';
 import _ from 'lodash';
 
+const toUnderscore = function(key) {
+  return key.replace(/(?:^|\.?)([A-Z])/g, (x,y) => { 
+    return "_" + y.toLowerCase()
+  }).replace(/^_/, "");
+};
+
 class WrapService extends AngularBaseClass {
   constructor($http, $rootScope, CustomerRepService, SubmissionService) {
     super(arguments);
@@ -287,9 +293,16 @@ class WrapService extends AngularBaseClass {
   }
 
   getSubmissionData() {
-    return _.extend({}, this.customerData, {
+    const data = {};
+    const temp = _.extend({}, this.customerData, {
       topics: _.map(this.selectionData, "name").join(', ')
     });
+
+    _.forEach(temp, (value, key) => {
+      data[toUnderscore(key)] = value;
+    });
+
+    return data;
   }
 
   sendEntry() {
