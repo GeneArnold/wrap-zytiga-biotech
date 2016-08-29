@@ -17,7 +17,5 @@ web:
     - /home/app/project/node_modules
     - /home/app/project/client/bower_components
   ports:
-    - '80:80'
-    - '443:443'
     - '9000:9000'
     - '35729:35729'
