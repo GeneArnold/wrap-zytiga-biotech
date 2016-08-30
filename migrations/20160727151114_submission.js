@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('submissions', function(table) {
     table.increments();
-    table.json('data', true).defaultTo({}).notNullable();
+    table.jsonb('data').defaultTo('{}').notNullable();
     table.timestamps();
   });
 };

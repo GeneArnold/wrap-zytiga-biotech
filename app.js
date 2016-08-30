@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var knexLogger = require('knex-logger');
+var json2csv = require('nice-json2csv');
 
 var services = require('./services');
 var knex = services.knex;
@@ -18,6 +19,8 @@ var aliveStatus = require('./routes/status');
 require('dotenv').config({silent: true});
 
 var app = express();
+
+app.use(json2csv.expressDecorator);
 
 var env = process.env.NODE_ENV || 'development';
 app.locals.ENV = env;

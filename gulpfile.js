@@ -166,27 +166,13 @@ gulp.task('minify:css', function() {
     .pipe($.size());
 });
 
-gulp.task('database:create', function(done) {
-  var config = require('./knexfile.js');
-  var knex   = require('knex')({
-    client: config[env].client,
-    connection: {
-      host: config[env].connection.host,
-      user: config[env].connection.user,
-      password: config[env].connection.password
-    }
-  });
-  knex.raw('CREATE DATABASE ' + config[env].connection.database);
-  done();
-});
-
 var dbTask = $.db({
   dialect: 'postgres',
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   host: process.env.DB_HOST
 });
-console.log(dbTask);
+
 gulp.task('db:create', dbTask.create(process.env.DB_DATABASE));
 gulp.task('db:drop', dbTask.drop(process.env.DB_DATABASE));
 

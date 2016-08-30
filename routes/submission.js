@@ -13,13 +13,19 @@ function handleError(res, statusCode) {
 router.get('/', (req, res, done) => {
   Submission.fetchAll()
     .then(submissions => {
-      res.json(submissions);
+      var data = submissions.map((submission) => {
+        return _.extend({
+          id: submission.id,
+          created_at: submission.attributes.created_at
+        }, submission.attributes.data);
+      });
+
+      res.json(data);
     })
     .catch(handleError(res));
 });
 
 router.post('/', (req, res, done) => {
-  console.log(req.body);
   Submission.forge({
     data: req.body
   }).save()
@@ -33,18 +39,10 @@ router.get('/csv', (req, res, done) => {
   Submission.fetchAll()
     .then(submissions => {
       var data = submissions.map((submission) => {
-        submission = submission.attributes.data;
-        return {
+        return _.extend({
           id: submission.id,
-          full_name: submission.full_name,
-          phone_number: submission.phone_number,
-          company: submission.company,
-          email: submission.email,
-          industry: submission.industry,
-          topics: submission.topics,
-          notes: submission.notes,
           created_at: `${submission.attributes.created_at}`
-        };
+        }, submission.attributes.data);
       });
 
       res.csv(data, 'Customer list.csv');

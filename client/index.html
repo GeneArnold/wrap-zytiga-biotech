@@ -42,7 +42,7 @@
       </header>
 
       <div class="container-fluid body-content">
-        <div class="full-height" id="full-height">      
+        <div class="full-height" id="full-height">
           <div class="row">
             <div class="col-md-8 col-sm-12 col-xs-12 title-description">
               <span>{{::appCtrl.mainHeader}}</span>
@@ -52,9 +52,9 @@
           </div>
           <div class="row main">
             <section class="customer col-md-4 col-sm-4" ng-controller="PersonalFormController as formCtrl">
-              <form id="personal" 
+              <form id="personal"
                     name="personalInformation"
-                    form-init="formCtrl.updateForm(); console.log('dfss');">
+                    form-init="formCtrl.updateForm();">
                 <div class="step">
                   <h1>
                     Enter Customer Info
@@ -65,31 +65,31 @@
                        ng-repeat="field in formCtrl.formFields"
                        ng-switch="field.type">
                     <div ng-switch-when="input">
-                      <input class="form-control" 
-                             type="text" 
-                             ng-model="formCtrl[field.name]" 
-                             ng-blur="formCtrl.updateForm()" 
-                             name="{{field.name}}" 
-                             placeholder="{{field.placeholder}}" 
+                      <input class="form-control"
+                             type="text"
+                             ng-model="formCtrl[field.name]"
+                             ng-blur="formCtrl.updateForm()"
+                             name="{{field.name}}"
+                             placeholder="{{field.placeholder}}"
                              ng-required="field.required"
                              ng-model-options="{ updateOn: 'blur' }">
                       <div class="help-block" ng-messages="personalInformation[field.name].$error"
                            ng-show="personalInformation[field.name].$touched || personalInformation.$submitted">
                         <div ng-messages-include="messages.html"></div>
-                      </div>                      
+                      </div>
                     </div>
                     <div ng-switch-when="tel">
                       <input class="form-control"
                        type="tel"
-                       ng-model="formCtrl[field.name]" 
-                       ng-blur="formCtrl.updateForm()" 
-                       name="{{field.name}}" 
-                       placeholder="{{field.placeholder}}" 
+                       ng-model="formCtrl[field.name]"
+                       ng-blur="formCtrl.updateForm()"
+                       name="{{field.name}}"
+                       placeholder="{{field.placeholder}}"
                        ng-required="field.required"
                        ng-model-options="{ updateOn: 'blur' }"
                        phone-input>
-                      <div class="help-block" 
-                           ng-messages="personalInformation[field.name].$error" 
+                      <div class="help-block"
+                           ng-messages="personalInformation[field.name].$error"
                            ng-show="personalInformation[field.name].$touched || personalInformation.$submitted">
                         <div ng-messages-include="messages.html"></div>
                       </div>
@@ -101,24 +101,24 @@
                       ng-blur="formCtrl.updateForm()"
                       ng-required="field.required"
                       name="{{field.name}}"
-                      placeholder="{{field.placeholder}}" 
+                      placeholder="{{field.placeholder}}"
                       ng-model-options="{ updateOn: 'blur' }">
-                      <div class="help-block" 
+                      <div class="help-block"
                            ng-messages="personalInformation[field.name].$error"
                            ng-show="personalInformation[field.name].$touched || personalInformation.$submitted">
                         <div ng-messages-include="messages.html"></div>
                       </div>
                     </div>
                     <div ng-switch-when="textArea">
-                      <textarea class="form-control" 
+                      <textarea class="form-control"
                                 name="{{field.name}}"
-                                id="notes" 
+                                id="notes"
                                 ng-required="field.required"
-                                ng-model="formCtrl[field.name]" 
+                                ng-model="formCtrl[field.name]"
                                 ng-blur="formCtrl.updateForm()"
                                 placeholder="{{field.placeholder}}">
                       </textarea>
-                      <div class="help-block" 
+                      <div class="help-block"
                            ng-messages="personalInformation[field.name].$error"
                            ng-show="personalInformation[field.name].$touched || personalInformation.$submitted">
                         <div ng-messages-include="messages.html"></div>
@@ -138,7 +138,7 @@
                 <ul id="topics" class="row">
                   <li class="col-md-4 col-sm-6 col-xs-12"
                       ng-repeat="topic in collection.topics"
-                      ng-class="collection.isActiveClass(topic)" 
+                      ng-class="collection.isActiveClass(topic)"
                       ng-click="collection.toggleSelection(topic, $event)">
                     <div class="topicContainter">
                       <img ng-src="{{collection.getImageUrlForCard(topic)}}"
@@ -189,25 +189,25 @@
        <div class="container-fluid">
           <div class="row middle">
             <div class="col-md-12">
-              <div class="title">Thank you!</div>          
+              <div class="title">Thank you!</div>
             </div>
             <div class="col-md-12">
               <div class="subtitle">
-                You’ll be receiving the information you requested 
+                You’ll be receiving the information you requested
                 <br>
                 via text shortly.
-              </div>          
+              </div>
             </div>
             <div class="col-md-12">
               <button type="button"
                       class="btn btn-primary flat-submit start-here"
-                      ng-click="thankYouCtrl.close()">Close</button>            
+                      ng-click="thankYouCtrl.close()">Close</button>
             </div>
 
           </div>
           <div class="bottom row">
             <div class="col-md-12">
-              <img class="bottom-logo" src="images/logoWhite.png"></img>          
+              <img class="bottom-logo" src="images/logoWhite.png"></img>
             </div>
           </div>
         </div>
