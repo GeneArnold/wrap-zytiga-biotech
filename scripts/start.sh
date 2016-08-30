@@ -86,7 +86,7 @@ else
     git pull
 
     # Build static assets
-    gulp build:production  
+    gulp build:production
   else
     git remote update
 
