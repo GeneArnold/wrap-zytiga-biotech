@@ -105,7 +105,7 @@ constants.formFields = [
   },
   {
     name: 'company',
-    type: 'tel',
+    type: 'input',
     required: false,
     placeholder: 'Company (optional)'
   },
@@ -114,19 +114,19 @@ constants.formFields = [
     type: 'email',
     useForEmail: true,
     required: false,
-    placeholder: 'Email (optional)'    
+    placeholder: 'Email (optional)'
   },
   {
     name: 'title',
     type: 'input',
     required: false,
-    placeholder: 'Title (optional)'    
+    placeholder: 'Title (optional)'
   },
   {
     name: 'notes',
     type: 'textArea',
     required: false,
-    placeholder: 'Please provide a short description of issues, questions, concerns (optional)'    
+    placeholder: 'Please provide a short description of issues, questions, concerns (optional)'
   }
 ];
 
