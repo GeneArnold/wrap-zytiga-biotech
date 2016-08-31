@@ -1,7 +1,7 @@
 require('dotenv').config({silent: true});
 
 var Postmark = require('postmark');
-var client = new Postmark.Client(process.env.POSTMARK_API);
+// var client = new Postmark.Client(process.env.POSTMARK_API);
 var _ = require('lodash');
 
 var PostmarkClient = function() {
