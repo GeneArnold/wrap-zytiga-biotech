@@ -15,6 +15,7 @@ import CollectionService from './services/CollectionService';
 import WrapService from './services/WrapService';
 import CustomerRepService from './services/CustomerRepService';
 import SubmissionService from './services/SubmissionService';
+import NotificationService from './services/NotificationService';
 import InactiveService from './services/InactiveService';
 import LoadingService from './services/LoadingService';
 import TelFilter from './filters/TelFilter';
@@ -40,6 +41,7 @@ angular.module(Constants.moduleName || "guidedSelling", [uibs, ngAnimate, ngMess
   .service('WrapService', WrapService)
   .service('CustomerRepService', CustomerRepService)
   .service('SubmissionService', SubmissionService)
+  .service('NotificationService', NotificationService)
   .service('InactiveService', InactiveService)
   .service('LoadingService', LoadingService)
   .directive('phoneInput', PhoneInputDirective.directiveFactory)

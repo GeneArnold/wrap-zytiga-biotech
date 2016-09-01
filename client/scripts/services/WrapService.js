@@ -3,13 +3,13 @@ import AngularBaseClass from '../angularBaseClass';
 import _ from 'lodash';
 
 const toUnderscore = function(key) {
-  return key.replace(/(?:^|\.?)([A-Z])/g, (x,y) => { 
+  return key.replace(/(?:^|\.?)([A-Z])/g, (x,y) => {
     return "_" + y.toLowerCase()
   }).replace(/^_/, "");
 };
 
 class WrapService extends AngularBaseClass {
-  constructor($http, $rootScope, CustomerRepService, SubmissionService) {
+  constructor($http, $rootScope, CustomerRepService, SubmissionService, NotificationService) {
     super(arguments);
     this.customerData = {};
     this.repData = CustomerRepService.getCustomerRepInfo();
@@ -23,7 +23,7 @@ class WrapService extends AngularBaseClass {
 
   getTopics() {
     this.topics = Constants.getTopics(this.customerData);
-    return this.topics;    
+    return this.topics;
   }
 
   updatePersonalForm(scope) {
@@ -216,13 +216,13 @@ class WrapService extends AngularBaseClass {
           values.push({
             id: card.id,
             data: card.data || {'': ''}
-          });        
+          });
         });
       } else {
         values.push({
           id: topic.id,
           data: topic.data || {'': ''}
-        });        
+        });
       }
     });
 
@@ -254,11 +254,11 @@ class WrapService extends AngularBaseClass {
           Authorization: `Bearer ${Constants.WRAP_API_KEY}`,
           'Content-Type': 'application/json'
         },
-        data: { 
+        data: {
           personalized_json: content,
           metadata: {
             submissionData: this.getSubmissionData()
-          } 
+          }
         }
       };
 
@@ -269,7 +269,7 @@ class WrapService extends AngularBaseClass {
   }
 
   shareWrapViaSMS(wrap) {
-    const phoneNumber = this.numberForTexting;  
+    const phoneNumber = this.numberForTexting;
     const url = `https://api.wrap.co/api/wraps/${wrap.id}/share?type=sms&phone_number=${phoneNumber}`;
     const body = Constants.customTextMessage;
     const shareOptions = {
@@ -287,9 +287,14 @@ class WrapService extends AngularBaseClass {
     return this.$http(shareOptions);
   }
 
-  //TODO
-  shareWrapViaEmail(wrapId) {
+  shareWrapViaEmail(wrap) {
+    let content = {
+      email: this.customerData.email,
+      wrapUrl: wrap.canonicalUrl
+    };
 
+    this.SubmissionService.sendEntry(content, response => {
+    });
   }
 
   getSubmissionData() {
@@ -311,5 +316,5 @@ class WrapService extends AngularBaseClass {
   }
 }
 
-WrapService.$inject = ['$http', '$rootScope', 'CustomerRepService', 'SubmissionService'];
+WrapService.$inject = ['$http', '$rootScope', 'CustomerRepService', 'SubmissionService', 'NotificationService'];
 export default WrapService;

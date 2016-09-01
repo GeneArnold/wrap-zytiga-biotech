@@ -40,15 +40,22 @@ class SubmitController extends AngularBaseClass {
 
   shareWrapViaEmail() {
     if (this.canSendEmail()) {
+      this.LoadingService.loading();
       this.WrapService.createPersonalizedWrap()
       .then(wrap => {
-        this.WrapService.shareWrapViaEmail(wrap.id)
+        this.WrapService.shareWrapViaEmail(wrap)
         .then(message => {
           this.shared = true;
-          this.WrapService.clearForm();
           this.WrapService.sendEntry();
-          this.sendErrorMessage('Send Email', message);
+          this.LoadingService.loaded();
+          this.$rootScope.showThankYouScreen = true;
+          this.WrapService.clearForm();
+        })
+        .catch(error => {
+          this.LoadingService.loaded();
+          this.sendErrorMessage('Send Email', "There was problem sending the wrap", false);
         });
+
       });
     } else {
       this.WrapService.setFormDirty();
