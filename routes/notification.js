@@ -18,17 +18,11 @@ router.post('/', function(req, res, done) {
   if (recipient) {
     postmarkClient.sendTemplate({
       recipient: recipient,
-      templateData: {
-        full_name: req.body.full_name,
-        cover_url: req.body.cover_url || ''
-      }
+      templateData: req.body
     }, function(err, success) {
       if (err) {
-        console.log(err);
-
         res.status(500).send(err);
       } else {
-        console.log(success);
         res.send('Success');
       }
     });
