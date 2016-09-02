@@ -1,9 +1,9 @@
 import AngularBaseClass from '../angularBaseClass';
 
 var playVideo = function() {
-  let video = $('#introVideoPlayer')[0];
+  const video = $('#introVideoPlayer')[0];
 
-  if (video.paused) {
+  if (video && video.paused) {
     var ua = navigator.userAgent;
 
     if (ua.match(/iPad/)) {
