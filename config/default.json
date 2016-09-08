@@ -1,0 +1,7 @@
+{
+  "activeFeatures": {
+    "postmark": true,
+    "postgres": true,
+    "authentication": false
+  }
+}

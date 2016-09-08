@@ -10,12 +10,6 @@ var json2csv = require('nice-json2csv');
 var services = require('./services');
 var knex = services.knex;
 
-var routes = require('./routes/index');
-var users = require('./routes/user');
-var submissions = require('./routes/submission');
-var notifications = require('./routes/notification');
-var aliveStatus = require('./routes/status');
-
 require('dotenv').config({silent: true});
 
 var app = express();
@@ -51,11 +45,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', routes);
-app.use('/users', users);
-app.use('/submissions', submissions);
-app.use('/notifications', notifications);
-app.use('/api/health', aliveStatus);
+// Setup routes
+require('./routes')(app);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

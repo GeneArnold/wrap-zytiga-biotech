@@ -1,10 +1,22 @@
-var express = require('express');
-var router = express.Router();
+var config = require('config');
 
-/* GET home page. */
+var users = require('./user');
+var submissions = require('./submission');
+var notifications = require('./notification');
+var aliveStatus = require('./status');
 
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
+var activeFeatures = config.get('activeFeatures');
 
-module.exports = router;
+var setupRoutes = function(app) {
+  app.use('/users', users);
+  app.use('/submissions', submissions);
+  app.use('/api/health', aliveStatus);
+
+  if (activeFeatures.get('postmark')) {
+    app.use('/notifications', notifications);
+  }
+
+  return app;
+};
+
+module.exports = setupRoutes;

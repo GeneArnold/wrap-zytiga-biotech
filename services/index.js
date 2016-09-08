@@ -1,7 +1,15 @@
+var config = require('config');
+var activeFeatures = config.get('activeFeatures');
+
 var bookshelf = require('./bookshelf');
 
-module.exports = {
+var services = {
   bookshelf: bookshelf,
-  knex: bookshelf.knex,
-  postmark: require('./postmark')
+  knex: bookshelf.knex
 };
+
+if (activeFeatures.get('postmark')) {
+  services['postmark'] = require('./postmark');
+}
+
+module.exports = services;
