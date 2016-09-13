@@ -59,6 +59,15 @@ fi
 
 if [ -z "$DB_HOST" ]; then
   DB_HOST=db
+
+  if [ -z "$DB_DATABASE" ]; then
+    echo "DB_DATABASE missing. \n Please include DB_DATABASE in the command"
+    exit 1
+  fi
+else
+  if [ -z "$DB_DATABASE" ]; then
+    DB_DATABASE=solutions
+  fi
 fi
 
 if [ -z "$DB_USER" ]; then
@@ -67,10 +76,6 @@ fi
 
 if [ -z "$DB_PASSWORD" ]; then
   DB_PASSWORD=postgres
-fi
-
-if [ -z "$DB_DATABASE" ]; then
-  DB_DATABASE=solutions
 fi
 
 if [ -z "$PORT" ]; then
