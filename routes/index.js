@@ -17,7 +17,7 @@ var setupRoutes = function(app) {
   }
 
   if (activeFeatures.get('authentication')) {
-    require('./passport')(app);
+    require('./passport').setup(app);
   }
 
   return app;

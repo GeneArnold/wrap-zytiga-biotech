@@ -7,7 +7,8 @@
   },
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "./node_modules/bower/bin/bower install --allow-root"
+    "postinstall": "./node_modules/bower/bin/bower install --allow-root",
+    "console": "node-promised"
   },
   "dependencies": {
     "angular": "^1.5.7",
@@ -68,6 +69,7 @@
     "gulp-util": "^3.0.3",
     "gulp-webserver": "^0.9.0",
     "knex-logger": "^0.1.0",
+    "repl-promised": "^0.1.0",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.3.0"
   },

@@ -176,6 +176,12 @@ var dbTask = $.db({
 gulp.task('db:create', dbTask.create(process.env.DB_DATABASE));
 gulp.task('db:drop', dbTask.drop(process.env.DB_DATABASE));
 
+gulp.task('console', function() {
+  var repl = require("repl");
+  var promisify = require("repl-promised").promisify;
+  promisify(repl.start({}));
+});
+
 // gulp.task('babel', function() {
 //   return gulp.src([
 //     './app.js',
