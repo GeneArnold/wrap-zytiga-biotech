@@ -27,21 +27,21 @@ USER root
 COPY . $HOME/project
 RUN chown -R app:app $HOME/*
 
-ADD conf/supervisord.conf /etc/supervisord.conf
+ADD config/supervisord.conf /etc/supervisord.conf
 
 RUN rm -rf /var/cache/apt/archives
 
 # Copy our nginx config
 RUN rm -Rf /etc/nginx/nginx.conf
-ADD conf/nginx.conf /etc/nginx/nginx.conf
+ADD config/nginx.conf /etc/nginx/nginx.conf
 
 # nginx site conf
 RUN mkdir -p /etc/nginx/sites-available/ && \
   mkdir -p /etc/nginx/sites-enabled/ && \
   mkdir -p /etc/nginx/ssl/
 RUN rm /etc/nginx/sites-available/default
-ADD conf/nginx-site.conf /etc/nginx/sites-available/default.conf
-ADD conf/nginx-site-ssl.conf /etc/nginx/sites-available/default-ssl.conf
+ADD config/nginx-site.conf /etc/nginx/sites-available/default.conf
+ADD config/nginx-site-ssl.conf /etc/nginx/sites-available/default-ssl.conf
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
 # Add Scripts

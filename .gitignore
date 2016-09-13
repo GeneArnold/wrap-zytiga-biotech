@@ -42,6 +42,7 @@ jspm_packages
 
 .env
 
+.DS_Store
 dist
 public
 client/bower_components

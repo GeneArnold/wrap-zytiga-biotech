@@ -2,6 +2,7 @@
   "activeFeatures": {
     "postmark": true,
     "postgres": true,
-    "authentication": false
-  }
+    "authentication": true
+  },
+  "secret": "mEZ9h0k3LnY90W4e9e1cAkZ1WX67KI8OmEZ9h0k3LnY90W4e9e1cAkZ1WX67KI8O"
 }

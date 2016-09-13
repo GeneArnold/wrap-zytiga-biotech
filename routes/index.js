@@ -16,6 +16,10 @@ var setupRoutes = function(app) {
     app.use('/notifications', notifications);
   }
 
+  if (activeFeatures.get('authentication')) {
+    require('./passport')(app);
+  }
+
   return app;
 };
 
