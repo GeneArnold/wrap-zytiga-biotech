@@ -39,7 +39,8 @@ if [ -z "$APPLICATION_NAME" ]; then
 fi
 
 if [ -z "$WRAP_APP_URL" ]; then
-  WRAP_APP_URL=http://$PROJECT_NAME.$AWS_REGION.elasticbeanstalk.com
+  # WRAP_APP_URL=http://$PROJECT_NAME.$AWS_REGION.elasticbeanstalk.com
+  WRAP_APP_URL=""
 fi
 
 if [ ! -z "$S3_BUCKET" ]; then
