@@ -50,7 +50,8 @@ fi
 
 # DB tasks
 if [ ! -z "$DB_HOST" ] ; then
-  psql -h $DB_HOST -U $DB_USER -tc "SELECT 1 FROM pg_database WHERE datname = '$DB_DATABASE'" | grep -q 1 || psql -h $DB_HOST -U $DB_USER -c "CREATE DATABASE $DB_DATABASE"
+  export PGPASSWORD=$DB_PASSWORD
+  psql -h $DB_HOST -U $DB_USER -tc "SELECT 1 FROM pg_database WHERE datname = '$DB_DATABASE'" postgres | grep -q 1 || psql -h $DB_HOST -U $DB_USER -c "CREATE DATABASE $DB_DATABASE" postgres
   cd $WEBROOT && node_modules/.bin/knex migrate:latest && echo "Migrations finished"
 fi
 
