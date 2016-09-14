@@ -59,14 +59,10 @@ fi
 
 if [ -z "$DB_HOST" ]; then
   DB_HOST=db
-
+else
   if [ -z "$DB_DATABASE" ]; then
     echo "DB_DATABASE missing. \n Please include DB_DATABASE in the command"
     exit 1
-  fi
-else
-  if [ -z "$DB_DATABASE" ]; then
-    DB_DATABASE=solutions
   fi
 fi
 
