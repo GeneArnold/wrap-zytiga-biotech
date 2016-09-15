@@ -30,7 +30,10 @@ var setupLocal = function(passport) {
 
 var setupRoutes = function(app) {
   app.post('/signup', authRoutes.signup);
-  // app.post('/login', authRoutes.login);
+  app.post('/login', authRoutes.login);
+  app.get('/status', passport.authenticate('jwt', {
+    session: false
+  }), authRoutes.status);
 };
 
 var setup = function(app) {
@@ -41,7 +44,10 @@ var setup = function(app) {
 };
 
 var moduleObject = {
-  setup: setup
+  setup: setup,
+  authentication: passport.authenticate('jwt', {
+    session: false
+  })
 };
 
 module.exports = moduleObject

@@ -1,13 +1,15 @@
-var gulp       = require('gulp');
-var $          = require('gulp-load-plugins')();
-var _          = require('lodash');
-var sync       = $.sync(gulp).sync;
-var del        = require('del');
-var browserify = require('browserify');
-var watchify   = require('watchify');
-var source     = require('vinyl-source-stream');
-var envify     = require('envify/custom');
-var babel      = require('babelify');
+var gulp        = require('gulp');
+var $           = require('gulp-load-plugins')();
+var _           = require('lodash');
+var sync        = $.sync(gulp).sync;
+var del         = require('del');
+var browserify  = require('browserify');
+var watchify    = require('watchify');
+var source      = require('vinyl-source-stream');
+var envify      = require('envify/custom');
+var babel       = require('babelify');
+var runSequence = require('run-sequence');
+var html2Js = require("gulp-ng-html2js");
 
 require('dotenv').config({silent: true});
 var env = process.env.NODE_ENV || 'development';
@@ -30,6 +32,9 @@ config = _.extend(config, {
     config.bootstrapDir + '/assets/fonts/**/*',
     config.fontAwesomeDir + '/fonts/**/*'
   ],
+  views: {
+    src: config.appDir + '/views/**/*.html',
+  },
   sassList: [
     config.bootstrapDir + '/assets/stylesheets'
   ],
@@ -108,6 +113,37 @@ gulp.task('images', function() {
     .pipe(gulp.dest(config.publicDir + '/images'))
     .pipe($.size());
 });
+
+gulp.task('views', function() {
+  return gulp.src(config)
+});
+
+gulp.task('html2js', function() {
+  gulp.src(config.views.src)
+    .pipe($.minifyHtml({
+      empty: true,
+      spare: true,
+      quotes: true
+    }))
+    .pipe(html2Js({
+      moduleName: 'partials',
+      prefix: "views/"
+    }))
+    .pipe($.concat("partials.min.js"))
+    .pipe($.uglify())
+    .pipe(gulp.dest(config.publicDir + '/'))
+    .pipe($.size());
+});
+
+gulp.task('views', function() {
+  runSequence(['html2js']);
+
+  // Any other view files from app/views
+  gulp.src(config.views.src)
+  // Will be put in the dist/views folder
+  .pipe(gulp.dest(config.publicDir + '/views'));
+});
+
 
 gulp.task('fonts', function() {
   return gulp.src(config.fontList)
@@ -195,7 +231,7 @@ gulp.task('minify', ['minify:js', 'minify:css']);
 
 gulp.task('clean', del.bind(null, 'dist'));
 
-gulp.task('bundle', ['html', 'styles', 'scripts', 'images', 'fonts', 'videos', 'extras']);
+gulp.task('bundle', ['html', 'styles', 'scripts', 'images', 'fonts', 'videos', 'extras', 'views']);
 
 gulp.task('clean-bundle', sync(['clean', 'bundle']));
 
@@ -214,6 +250,7 @@ gulp.task('watch', sync(['clean-bundle', 'develop']), function() {
   gulp.watch(config.appDir + '/images/**/*', ['images']);
   gulp.watch(config.appDir + '/fonts/**/*', ['fonts']);
   gulp.watch(config.appDir + '/videos/**/*', ['videos']);
+  gulp.watch(config.appDir + '/views/**/*', ['views', 'html2js']);
 });
 
 gulp.task('develop', function () {

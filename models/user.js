@@ -47,7 +47,8 @@ var User = services.bookshelf.Model.extend({
   },
   hashPassword: function(model, attrs, options) {
     return new Promise(function(resolve, reject) {
-      if (model.isNew() && attrs.password === undefined) {
+      console.log(model.attributes);
+      if (model.isNew() && model.attributes.password === undefined) {
         reject({
           message: 'Missing password'
         });
