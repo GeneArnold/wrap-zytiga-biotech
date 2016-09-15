@@ -17,6 +17,6 @@ class NotificationService extends AngularBaseClass {
   }
 }
 
-SubmissionService.$inject = ['$http'];
+NotificationService.$inject = ['$http'];
 
-export default SubmissionService;
+export default NotificationService;
