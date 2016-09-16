@@ -13,7 +13,7 @@ class TokenInterceptor extends AngularBaseClass {
 
     config.headers = config.headers || {};
     if (self.AuthenticationService.token) {
-      config.headers['Authentication'] = self.AuthenticationService.token;
+      config.headers['Authorization'] = self.AuthenticationService.token;
       config.headers['Content-Type'] = 'application/json';
     }
     return config || $q.when(config);

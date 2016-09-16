@@ -2,7 +2,7 @@ import Constants from '../constants';
 import AngularBaseClass from '../angularBaseClass';
 
 class AuthenticationService extends AngularBaseClass {
-  constructor($sessionStorage) {
+  constructor($sessionStorage, $location) {
     super(arguments);
 
     this.isLogged = false;
@@ -21,6 +21,7 @@ class AuthenticationService extends AngularBaseClass {
   clear() {
     this.isLogged = false;
     this.$sessionStorage.$reset();
+    this.$location.path('/login');
   }
 
   set user(value) {
@@ -44,5 +45,5 @@ class AuthenticationService extends AngularBaseClass {
   }
 }
 
-AuthenticationService.$inject = ['$sessionStorage'];
+AuthenticationService.$inject = ['$sessionStorage', '$location'];
 export default AuthenticationService;

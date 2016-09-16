@@ -8,17 +8,17 @@ class LoginController extends AngularBaseClass {
   }
 
   login() {
-    const email = $scope.user.email;
-    const password = $scope.user.password;
+    const email = this.$scope.user.email;
+    const password = this.$scope.user.password;
 
-    UserAuthService
+    this.UserAuthService
       .login(email, password)
       .success(data => {
-        AuthenticationService.token = data.token;
-        AuthenticationService.user = data.user;
-        AuthenticationService.check();
+        this.AuthenticationService.token = data.token;
+        this.AuthenticationService.user = data.user;
+        this.AuthenticationService.check();
 
-        $location.path('/');
+        this.$location.path('/');
       })
       .error((status) => {
         // respond with error

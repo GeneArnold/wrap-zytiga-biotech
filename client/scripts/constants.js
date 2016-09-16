@@ -4,6 +4,7 @@ let constants = {
   WRAP_BASE_URL: process.env.WRAP_BASE_URL,
   WRAP_APP_URL: process.env.WRAP_APP_URL,
   WRAP_API_KEY: process.env.WRAP_API_KEY,
+  ACTIVE_FEATURES: process.env.ACTIVE_FEATURES,
   // collectionId: '3f235bd9-345c-4493-a341-2878b2e26222',
   draftWrapId: '4ea6d307-d506-4ab9-9532-6f0ca2e6d072'
 };

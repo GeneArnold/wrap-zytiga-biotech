@@ -5,7 +5,8 @@
         <img src="images/logo.png" alt="" />
       </div>
       <img class="corner" src="images/corner.png" alt="" ng-click="headerCtrl.resetForm()" />
-      <div id="account" class="col-md-6" style="display: none;">
+      <div id="account" class="col-md-6 col-md-push-5">
+        <a ng-click="headerCtrl.logout()">Logout</a>
         <div class="pull-right">
           <select name="customerRep" id="customerRep" class="form-control">
             <option value="Ivan Turkovic">Ivan Turkovic</option>

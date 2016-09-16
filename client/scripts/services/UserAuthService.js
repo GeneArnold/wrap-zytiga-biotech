@@ -7,20 +7,33 @@ class UserAuthService extends AngularBaseClass {
   }
 
   login(email, password) {
-    return $http.post(Constants.WRAP_APP_URL + '/login', {
+    return this.$http.post(Constants.WRAP_APP_URL + '/login', {
       email: email,
       password: password
     });
   }
 
   logout() {
-    if (AuthenticationService.isLogged) {
-      AuthenticationService.clear();
-
-      $location.path('/login');
+    if (this.AuthenticationService.isLogged) {
+      this.AuthenticationService.clear();
+      console.log('fsdf');
+      this.$location.path('/login');
     }
+  }
+
+  check() {
+    this.$http
+      .get(Constants.WRAP_APP_URL + '/user_status')
+      .success(data => {
+        this.AuthenticationService.check();
+      })
+      .error((status) => {
+        this.AuthenticationService.clear();
+      });
   }
 }
 
-UserAuthService.$inject = ['$sessionStorage'];
+UserAuthService.$inject = ['$location',
+                           '$http',
+                           'AuthenticationService'];
 export default UserAuthService;

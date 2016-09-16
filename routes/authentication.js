@@ -25,7 +25,6 @@ var login = function(req, res, done) {
   User.where('email', req.body.email)
     .fetch()
     .then(user => {
-      console.log(user)
       if (user) {
         user.verifyPassword(req.body.password, function(err, isMatch) {
           if (isMatch) {

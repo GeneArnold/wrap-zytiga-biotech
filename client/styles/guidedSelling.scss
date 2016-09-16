@@ -80,7 +80,7 @@ $placeholder-color: white;
   &.ng-submitted {
     input.ng-invalid {
       border-bottom: 1px solid #ff5a5a;
-    }    
+    }
   }
 
   input.ng-touched.ng-invalid {
@@ -94,7 +94,7 @@ $placeholder-color: white;
       display: inline;
       color: white;
       background-color: #ff5a5a;
-      padding: 3px;        
+      padding: 3px;
     }
   }
 }
@@ -119,11 +119,11 @@ $placeholder-color: white;
   &::placeholder {
     color:  $placeholder-color;
   }
-  
+
   &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:  $placeholder-color;
   }
-  
+
   &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color:  $placeholder-color;
     opacity:  1;
@@ -141,9 +141,9 @@ $placeholder-color: white;
 }
 
 textarea {
-  &::placeholder, 
-  &::-webkit-input-placeholder, 
-  &:-moz-placeholder, 
+  &::placeholder,
+  &::-webkit-input-placeholder,
+  &:-moz-placeholder,
   &::-moz-placeholder,
   &:-ms-input-placeholder {
     position: absolute;
@@ -160,7 +160,7 @@ textarea {
   -ms-user-select: none;       /* Internet Explorer/Edge */
   user-select: none;           /* Non-prefixed version, currently
                                   not supported by any browser */
-  cursor: default;                                  
+  cursor: default;
 }
 
 
@@ -206,7 +206,7 @@ body {
   }
 }
 
-#fullscreen-intro, #thank-you {
+#fullscreen-intro, #thank-you, #login-page {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -237,7 +237,7 @@ body {
   .container-fluid {
     top: 0;
     left: 0;
-    position: absolute;      
+    position: absolute;
     height: 100%;
     width: 100%;
 
@@ -317,9 +317,63 @@ body {
       padding-bottom: 20px;
 
       .bottom-logo {
-        width: 22%; 
+        width: 22%;
         text-align: center;
-      }    
+      }
+    }
+  }
+}
+
+#login-page {
+  background-color: #0d6a8e;
+
+  .container-fluid {
+    height: 100%;
+    width: 100%;
+
+    .middle {
+      color: white;
+      padding-top: 200px;
+      text-align: center;
+      margin: 0 auto;
+      position: relative;
+
+      .title {
+        font-size: 90px;
+      }
+
+      .subtitle {
+        font-family: "GothamRounded-Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 24px;
+        margin-bottom: 25px;
+      }
+
+      button {
+        border: 0;
+        text-transform: uppercase;
+        font-size: 2em;
+        padding-left: 30px;
+        padding-right: 30px;
+        border-radius: 10px;
+        height: auto;
+        width: auto;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+    }
+
+    .bottom {
+      position: fixed;
+      text-align: center;
+      width: 100%;
+      bottom: 0;
+      padding-bottom: 20px;
+
+      .bottom-logo {
+        width: 22%;
+        text-align: center;
+      }
     }
   }
 }
@@ -408,7 +462,7 @@ section {
         overflow: hidden;
         width: 100%;
         height: 100%;
-      }      
+      }
     }
 
     .overlay {
@@ -517,7 +571,7 @@ html {
         img.topicImage {
           height: 150px;
           overflow: hidden;
-        }      
+        }
       }
 
       .content {
@@ -588,12 +642,12 @@ html {
         .subtitle {
           font-size: 4vh;
         }
-      }      
+      }
     }
   }
 
   .header {
-    height: $header-height; 
+    height: $header-height;
 
     .logo {
       padding-top: 30px;

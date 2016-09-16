@@ -1,7 +1,7 @@
 import AngularBaseClass from '../angularBaseClass';
 
 class HeaderController extends AngularBaseClass {
-  constructor($rootScope, WrapService) {
+  constructor($rootScope, WrapService, UserAuthService) {
     super(arguments);
   }
 
@@ -9,9 +9,15 @@ class HeaderController extends AngularBaseClass {
     this.WrapService.clearForm();
     this.$rootScope.$broadcast('inactive.state');
   }
+
+  logout() {
+    this.UserAuthService.logout();
+  }
 }
 
-HeaderController.$inject = ['$rootScope', 'WrapService'];
+HeaderController.$inject = ['$rootScope',
+                            'WrapService',
+                            'UserAuthService'];
 
 export default HeaderController;
 

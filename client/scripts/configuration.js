@@ -1,24 +1,33 @@
 import Constants from './constants';
 
+const useAuthentication = Constants.ACTIVE_FEATURES.authentication;
+
 var configuration = function($routeProvider, $httpProvider) {
   $httpProvider.interceptors.push('TokenInterceptor');
 
   $routeProvider
-    .when('/login', {
-      templateUrl: 'views/login.html',
-      controller: 'LoginController',
-      access: {
-        requiredLogin: false
-      }
-    }).when('/', {
+    .when('/', {
       templateUrl: 'views/home.html',
-      controller: 'HomeCtrl',
+      controller: 'HomeController',
+      controllerAs: 'homeCtrl',
       access: {
         requiredLogin: true
       }
     }).otherwise({
-      redirectTo: '/login'
+      redirectTo: '/'
     });
+
+  if (useAuthentication) {
+    $routeProvider
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginController',
+        controllerAs: 'loginCtrl',
+        access: {
+          requiredLogin: false
+        }
+      });
+  }
 };
 
 configuration.$inject = ['$routeProvider', '$httpProvider'];

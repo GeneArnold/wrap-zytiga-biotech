@@ -11,6 +11,7 @@ import PersonalFormController from './controllers/FormController';
 import SubmitController from './controllers/SubmitController';
 import IntroController from './controllers/IntroController';
 import LoginController from './controllers/LoginController';
+import HomeController from './controllers/HomeController';
 import ThankYouController from './controllers/ThankYouController';
 import ApplicationController from './controllers/ApplicationController';
 import HeaderController from './controllers/HeaderController';
@@ -40,6 +41,7 @@ angular.module(Constants.moduleName || "guidedSelling", [uibs, ngRoute, ngAnimat
   .controller('SubmitController', SubmitController)
   .controller('IntroController', IntroController)
   .controller('LoginController', LoginController)
+  .controller('HomeController', HomeController)
   .controller('HeaderController', HeaderController)
   .controller('ThankYouController', ThankYouController)
   .controller('ApplicationController', ApplicationController)

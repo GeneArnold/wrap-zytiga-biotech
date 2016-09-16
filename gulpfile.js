@@ -9,7 +9,8 @@ var source      = require('vinyl-source-stream');
 var envify      = require('envify/custom');
 var babel       = require('babelify');
 var runSequence = require('run-sequence');
-var html2Js = require("gulp-ng-html2js");
+var html2Js     = require("gulp-ng-html2js");
+var configEnv   = require('config');
 
 require('dotenv').config({silent: true});
 var env = process.env.NODE_ENV || 'development';
@@ -43,6 +44,11 @@ config = _.extend(config, {
   ]
 });
 
+var ACTIVE_FEATURES = {};
+var features = configEnv.get('activeFeatures');
+
+ACTIVE_FEATURES.authentication = features.get('authentication');
+
 var bundler = {
   w: null,
   init: function() {
@@ -57,9 +63,10 @@ var bundler = {
     });
     b.transform(envify({
       _: 'purge',
-      "WRAP_API_KEY": process.env.WRAP_API_KEY,
-      "WRAP_BASE_URL": process.env.WRAP_BASE_URL,
-      'WRAP_APP_URL': process.env.WRAP_APP_URL
+      'WRAP_API_KEY': process.env.WRAP_API_KEY,
+      'WRAP_BASE_URL': process.env.WRAP_BASE_URL,
+      'WRAP_APP_URL': process.env.WRAP_APP_URL,
+      'ACTIVE_FEATURES': ACTIVE_FEATURES
     }));
     this.w = watchify(b);
   },
