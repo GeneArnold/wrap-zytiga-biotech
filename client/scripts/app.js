@@ -4,7 +4,7 @@ import uibs from 'angular-ui-bootstrap';
 import ngRoute from 'angular-route';
 import ngAnimate from 'angular-animate';
 import ngMessages from 'angular-messages';
-import 'ngStorage';
+import 'ngstorage';
 import Constants from './constants';
 import CollectionController from './controllers/CollectionController';
 import PersonalFormController from './controllers/FormController';
